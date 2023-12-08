@@ -32,6 +32,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Login from './Login';
+import ProductListingPage from "./ProductListingPage";
 
 library.add(faUser, faShoppingCart);
 
@@ -52,8 +53,20 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: "dropDownLink",
-        element: <HomePage/>
+        path: "/productCategories",
+        element: <ProductListingPage/>
+        // loader: async ({ params }) => {
+        //   const { category } = params;
+
+        //   // Modify the fetch URL to include the dynamic id parameter
+        //   const collectionsResp = fetch(`/collections`).then(response => response.json());
+          
+        //   // Use Promise.all to wait for all requests to complete
+        //   const [data1] = await Promise.all([collectionsResp]);
+
+        //   // You can process the data as needed
+        //   return { collectionsData: data1};
+        // }
       }
     
     ]

@@ -172,3 +172,12 @@
     width: 100%; /* Make images take full width of their grid cell */
     max-height: auto; /* Allow images to scale proportionally */
 }
+/* Add this CSS to your component or global styles */
+.responsive-image {
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+  }
+  
+  .responsive-image:hover {
+    transform: scale(1.1); /* Increase the size on hover */
+  }
+  

@@ -66,10 +66,15 @@ export default function CustomNavbar() {
       <Navbar.Collapse id="navbarNavDropdown">
         <Nav className="mx-auto"> {/* Center-align the dropdown menus */}
           <NavDropdown title="Product Categories" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#">Oil</NavDropdown.Item>
-            <NavDropdown.Item href="#">Tablets</NavDropdown.Item>
-            <NavDropdown.Item href="#">Tinctures</NavDropdown.Item>
-            <NavDropdown.Item href="#">Meal Ingredients</NavDropdown.Item>
+            <NavDropdown.Item href="/productCategories">Immunity</NavDropdown.Item>
+            <NavDropdown.Item href="#">Men's Health</NavDropdown.Item>
+            <NavDropdown.Item href="#">Women's Health</NavDropdown.Item>
+            <NavDropdown.Item href="#">Heart</NavDropdown.Item>
+            <NavDropdown.Item href="#">Digestive</NavDropdown.Item>
+            <NavDropdown.Item href="#">Joint and Bones</NavDropdown.Item>
+            <NavDropdown.Item href="#">Hair Health</NavDropdown.Item>
+            <NavDropdown.Item href="#">Skin Care</NavDropdown.Item>
+            <NavDropdown.Item href="#">Lungs and Sinus</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Training and Education" id="basic-nav-dropdown">
             <NavDropdown.Item href="#">Webinars</NavDropdown.Item>
