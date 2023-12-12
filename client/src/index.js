@@ -33,6 +33,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Login from './Login';
 import ProductListingPage from "./ProductListingPage";
+import ProductDetailsPage from './ProductDetailsPage';
 
 library.add(faUser, faShoppingCart);
 
@@ -68,6 +69,22 @@ const router = createBrowserRouter([
           return { allProductCategoriesData: data1, category: category };
         }
         
+      },
+      {
+        path: "/productDetails/:productCategory/:productID",
+        element: <ProductDetailsPage />,
+        loader: async ({ params }) => {
+          const { productCategory, productID } = params;
+        
+          // Modify the fetch URL to include the dynamic id parameter
+          const productDetailsByIdDataResp = fetch(`/productDetails/${productCategory}/${productID}`).then(response => response.json());
+        
+          // Use Promise.all to wait for all requests to complete
+          const [data1] = await Promise.all([productDetailsByIdDataResp]);
+        
+          // You can process the data as needed
+          return { productDetailsByIdData: data1, productCategory: productCategory, productID: productID };
+        }
       }
     
     ]

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useLoaderData } from "react-router-dom";
+import {useLoaderData,useNavigate} from "react-router-dom";
 import { Card, Col, Container, Row, Button } from 'react-bootstrap';
 
 const ProductListingPage = () => {
@@ -7,6 +7,7 @@ const ProductListingPage = () => {
     const loaderData = useLoaderData();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -22,6 +23,10 @@ const ProductListingPage = () => {
         }
     }, [loaderData]);
 
+    const handleCardClick = (productId, productCategory) => {
+      // Navigate to the product details page with the product ID
+      navigate(`/productDetails/${productCategory}/${productId}`);
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -34,7 +39,7 @@ const ProductListingPage = () => {
                 {products.map(product => (
                     <Col key={product.id}>
                         <Card className="h-100" style={{ cursor: 'pointer' }}>
-                            <Card.Img
+                            <Card.Img onClick={() => handleCardClick(product.id, loaderData.category)}
                                 variant="top"
                                 src={product.image}
                                 alt={product.name}

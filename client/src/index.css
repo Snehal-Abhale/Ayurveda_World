@@ -181,3 +181,17 @@
     transform: scale(1.1); /* Increase the size on hover */
   }
       
+  /* Add this CSS to your stylesheet */
+.zoom-card {
+  border: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoom-card:hover {
+  transform: scale(1.1); /* Adjust the scale factor as needed */
+}
+
+.zoom-image {
+  height: 100%; /* Ensures the image takes the full height of the card */
+  object-fit: cover;
+}

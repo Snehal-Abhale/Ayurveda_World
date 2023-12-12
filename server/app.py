@@ -27,5 +27,24 @@ def get_products_by_category(category):
     # Return the products for the specified category
     return jsonify({category: products})
 
+@app.route("/productDetails/<category>/<int:productID>", methods=["GET"])
+def get_product_by_category_product_id(category, productID):
+    # Check if the provided category exists in the data
+    if category not in data:
+        return jsonify({"error": "Category not found"}), 404
+    
+    # Get the products for the specified category
+    products = data[category]
+
+    # Find the product with the specified ID
+    product = next((item for item in products if item["id"] == productID), None)
+
+    # Check if the product with the specified ID exists
+    if product is None:
+        return jsonify({"error": f"Product with ID {productID} not found in category {category}"}), 404
+
+    # Return the specific product
+    return jsonify({"product": product})
+
 if __name__ == "__main__":
     app.run(port=5000)

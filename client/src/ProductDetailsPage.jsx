@@ -1,57 +1,98 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { useLoaderData, useParams } from "react-router-dom";
+import { Container, Row, Col, Card ,Button, Form} from "react-bootstrap";
+import { BsPlus } from "react-icons/bs";
 
 const ProductDetailsPage = () => {
-  const { productId } = useParams();
-  const [product, setProduct] = useState(null);
+
+  const loaderData = useLoaderData();
+  const [product, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleIncreaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleAddToCart = () => {
+    // Implement your logic to add the product to the cart
+    console.log(`Added ${quantity} ${product.name} to the cart`);
+  };
+
+  const handleBuyNow = () => {
+    // Implement your logic to initiate the buying process
+    console.log(`Buying ${quantity} ${product.name} now`);
+  };
+
 
   useEffect(() => {
-    // Fetch product details based on the productId
-    const fetchProductDetails = async () => {
-      try {
-        const response = await fetch(`/api/products/${productId}`); // Replace with your API endpoint
-        const data = await response.json();
-
-        if (data) {
-          setProduct(data);
-          setLoading(false);
+       
+    if (loaderData && loaderData.productDetailsByIdData) {
+        const data = loaderData.productDetailsByIdData;
+        console.log("loader Data:",data.product)
+        console.log("")
+        if (data.product) {
+            setProducts(data.product);
+            setLoading(false);
         } else {
-          console.error("Product not found");
+            console.error("Invalid data:", data);
         }
-      } catch (error) {
-        console.error("Error fetching product details:", error);
-      }
-    };
-
-    fetchProductDetails();
-  }, [productId]);
+    }
+}, [loaderData]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <Container className="mt-5">
-      <Row>
-        <Col md={6}>
-          <Card>
-            <Card.Img variant="top" src={product.image} alt={product.name} />
-            <Card.Body>
-              <Card.Title>{product.name}</Card.Title>
-              <Card.Text>Vendor: {product.vendor}</Card.Text>
-              <Card.Text>Price: {product.price}</Card.Text>
-              {/* Add more details as needed */}
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={6}>
-          {/* Additional product details or description */}
-          <p>{product.description}</p>
-        </Col>
-      </Row>
-    </Container>
+    <Container className="mt-10">
+      <Card.Header as="h2" className="text-center">{product.name}</Card.Header>
+
+    <Row>
+    
+      <Col md={4} >
+        <Card style={{ height:"50rem", width: '20rem',border: "none", boxShadow: "none" }} >
+          <Card.Img   className="responsive-image" variant="top" src={product.image} alt={product.name} />
+        </Card>
+      </Col>
+      <Col md={8}>
+        <Card style={{ height:"50rem", width: '50rem' , border: "none", boxShadow: "none"}} >
+          <Card.Body>
+            
+            <Card.Text className="text-left" >{product.description}</Card.Text>
+            <Card.Text>Vendor: {product.vendor}</Card.Text>
+            <Card.Text>Price: {product.price}</Card.Text>
+            <Form.Group controlId="quantity">
+                <Form.Label>Quantity:</Form.Label>
+                <div className="d-flex align-items-center">
+                  <Button
+                    variant="secondary"
+                    className="me-2"
+                    onClick={handleIncreaseQuantity}
+                  >
+                    <BsPlus /> {/* Plus icon */}
+                  </Button>
+                  <Form.Control
+                    type="number"
+                    min="1"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                </div>
+              </Form.Group>
+            <br></br>
+            <Button variant="primary" onClick={handleAddToCart}>
+              Add to Cart
+            </Button>{" "}
+            <Button variant="success" onClick={handleBuyNow}>
+              Buy Now
+            </Button>{" "}
+            
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+  </Container>
   );
 };
 
