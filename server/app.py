@@ -12,20 +12,20 @@ with open('/home/snehal/dev/Phase5/Ayurveda_World/server/db.json') as f:
 
 @app.route("/", methods=["GET"])
 def index():
-    return {"message": "Hello world!"}
+    return {"message": "The Ayurvedic world API is Active!"}
 
-@app.route("/date", methods=["GET"])
-def view_current_date():
-    # Get the current time
-    current_time = time.time()
-    # Convert it to a date
-    current_date = datetime.datetime.fromtimestamp(current_time).strftime("%Y-%m-%d")
-    return {"date": current_date, "time": current_time}
 
-@app.route("/productCategories", methods=["GET"])
-def get_Oils_json_data():
-    # Return data read from the JSON file
-    return jsonify(data)
+@app.route("/productCategories/<category>", methods=["GET"])
+def get_products_by_category(category):
+    # Check if the provided category exists in the data
+    if category not in data:
+        return jsonify({"error": "Category not found"}), 404
+
+    # Get the products for the specified category
+    products = data[category]
+
+    # Return the products for the specified category
+    return jsonify({category: products})
 
 if __name__ == "__main__":
     app.run(port=5000)

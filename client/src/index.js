@@ -53,20 +53,21 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: "/productCategories",
-        element: <ProductListingPage/>
-        // loader: async ({ params }) => {
-        //   const { category } = params;
-
-        //   // Modify the fetch URL to include the dynamic id parameter
-        //   const collectionsResp = fetch(`/collections`).then(response => response.json());
-          
-        //   // Use Promise.all to wait for all requests to complete
-        //   const [data1] = await Promise.all([collectionsResp]);
-
-        //   // You can process the data as needed
-        //   return { collectionsData: data1};
-        // }
+        path: "/productCategories/:category",
+        element: <ProductListingPage />,
+        loader: async ({ params }) => {
+          const { category } = params;
+        
+          // Modify the fetch URL to include the dynamic id parameter
+          const allProductCategoriesDataResp = fetch(`/productCategories/${category}`).then(response => response.json());
+        
+          // Use Promise.all to wait for all requests to complete
+          const [data1] = await Promise.all([allProductCategoriesDataResp]);
+        
+          // You can process the data as needed
+          return { allProductCategoriesData: data1, category: category };
+        }
+        
       }
     
     ]

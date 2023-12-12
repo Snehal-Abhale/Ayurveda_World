@@ -46,7 +46,7 @@
 // }
 
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
@@ -66,20 +66,20 @@ export default function CustomNavbar() {
       <Navbar.Collapse id="navbarNavDropdown">
         <Nav className="mx-auto"> {/* Center-align the dropdown menus */}
           <NavDropdown title="Product Categories" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/productCategories">Immunity</NavDropdown.Item>
-            <NavDropdown.Item href="#">Men's Health</NavDropdown.Item>
-            <NavDropdown.Item href="#">Women's Health</NavDropdown.Item>
-            <NavDropdown.Item href="#">Heart</NavDropdown.Item>
-            <NavDropdown.Item href="#">Digestive</NavDropdown.Item>
-            <NavDropdown.Item href="#">Joint and Bones</NavDropdown.Item>
-            <NavDropdown.Item href="#">Hair Health</NavDropdown.Item>
-            <NavDropdown.Item href="#">Skin Care</NavDropdown.Item>
-            <NavDropdown.Item href="#">Lungs and Sinus</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Immunity">Immunity</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Mens Health">Men's Health</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Womens Health">Women's Health</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Heart">Heart</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Digestive">Digestive</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Joint and Bones">Joint and Bones</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Hair Health">Hair Health</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Skin Care">Skin Care</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Lungs and Sinus">Lungs and Sinus</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Training and Education" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#">Webinars</NavDropdown.Item>
-            <NavDropdown.Item href="#">Books</NavDropdown.Item>
-            <NavDropdown.Item href="#">CDs and DVDs</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Webinars">Webinars</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/Books">Books</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/productCategories/CDs and DVDs">CDs and DVDs</NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Nav className="ml-auto">

@@ -19,7 +19,7 @@ export default function Root() {
 
       {/* This <footer> will render below every route. */}
       <footer className="py-4 text-center bg-dark text-white">
-        <Container>
+        <Container className="padding-top: 60px">
 
           <div className="row">
             <div className="col-md-4">
