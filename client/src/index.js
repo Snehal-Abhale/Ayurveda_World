@@ -19,7 +19,8 @@ import "./index.css";
 // React Router
 import {
   createBrowserRouter,
-  RouterProvider
+  RouterProvider,
+  
 } from "react-router-dom";
 // Routes & Error Handling
 // Note: By convention, routes are named `routes/[slug].jsx`.
@@ -34,6 +35,9 @@ import { faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Login from './Login';
 import ProductListingPage from "./ProductListingPage";
 import ProductDetailsPage from './ProductDetailsPage';
+import Cart from './Cart';
+import AddProducts from './AddProducts';
+import AccountPage from './AccountPage';
 
 library.add(faUser, faShoppingCart);
 
@@ -54,22 +58,30 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: "/productCategories/:category",
-        element: <ProductListingPage />,
-        loader: async ({ params }) => {
-          const { category } = params;
-        
-          // Modify the fetch URL to include the dynamic id parameter
-          const allProductCategoriesDataResp = fetch(`/productCategories/${category}`).then(response => response.json());
-        
-          // Use Promise.all to wait for all requests to complete
-          const [data1] = await Promise.all([allProductCategoriesDataResp]);
-        
-          // You can process the data as needed
-          return { allProductCategoriesData: data1, category: category };
-        }
-        
+        path: "/account",
+        element: <AccountPage />
       },
+      {
+        path: "/add_products",
+        element: <AddProducts />
+      },
+        {
+          path: "/productCategories/:category",
+          element: <ProductListingPage />,
+          loader: async ({ params }) => {
+            const { category, search } = params;
+          
+            // Modify the fetch URL to include the dynamic id parameter
+            const allProductCategoriesDataResp = fetch(`/productCategories/${category}`).then(response => response.json());
+          
+            // Use Promise.all to wait for all requests to complete
+            const [data1] = await Promise.all([allProductCategoriesDataResp]);
+          
+            // You can process the data as needed
+            return { allProductCategoriesData: data1, category: category, search: search };
+          }
+          
+        },
       {
         path: "/productDetails/:productCategory/:productID",
         element: <ProductDetailsPage />,
@@ -78,12 +90,28 @@ const router = createBrowserRouter([
         
           // Modify the fetch URL to include the dynamic id parameter
           const productDetailsByIdDataResp = fetch(`/productDetails/${productCategory}/${productID}`).then(response => response.json());
+          const cartItemsdataResp = fetch(`/get_cart_data`).then(response => response.json());
         
           // Use Promise.all to wait for all requests to complete
-          const [data1] = await Promise.all([productDetailsByIdDataResp]);
+          const [data1, data2] = await Promise.all([productDetailsByIdDataResp,cartItemsdataResp]);
         
           // You can process the data as needed
-          return { productDetailsByIdData: data1, productCategory: productCategory, productID: productID };
+          return { productDetailsByIdData: data1, cartItemsdata: data2, productCategory: productCategory, productID: productID };
+        }
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+        loader: async () => {
+          // Modify the fetch URL to include the dynamic id parameter
+        
+          const cartItemsdataResp = fetch(`/get_cart_data`).then(response => response.json());
+        
+          // Use Promise.all to wait for all requests to complete
+          const [data1] = await Promise.all([cartItemsdataResp]);
+        
+          // You can process the data as needed
+          return { cartItemsdata: data1 };
         }
       }
     

@@ -1,43 +1,62 @@
 import Carousel from 'react-bootstrap/Carousel';
+import { NavLink, Link } from "react-router-dom";
 
 function DarkVariantExample() {
   return (
-    <Carousel data-bs-theme="dark">
+    <Carousel data-bs-theme="dark" interval="2000">
       <Carousel.Item>
-        <img
-          className="d-block w-20"
-          src="https://t3.ftcdn.net/jpg/02/45/77/62/360_F_245776292_KjTmy7E9bYhpZxfikW1YLbZrG2EPoRay.jpg"
-          alt="First slide"
-        />
-        <Carousel.Caption>
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
+        <NavLink to="/productCategories/Immunity">
+          <div
+            className="d-flex align-items-start justify-content-end "
+            style={{
+              backgroundImage: `url('https://cdn.pixabay.com/photo/2023/10/20/07/12/ai-generated-8328480_1280.png')`,
+              backgroundSize: 'cover',
+              color: 'white',
+              height: '800px',
+            }}
+          >
+
+            <div className="w-75 h-100 d-flex flex-column align-items-left justify-content-left text-light position-absolute top-0 end-0 p-6">
+
+              <p style={{ fontSize: '2.5em', fontWeight: 'bold' }}>Get 50% Off on Immunity Products!</p>
+               
+                
+            </div>
+          </div>
+        </NavLink>
+      </Carousel.Item>
+
+      <Carousel.Item>
+        <NavLink to="/productCategories/Skin Care">
+          <div
+            className="d-flex align-items-start justify-content-end"
+            style={{
+              backgroundImage: `url('https://digiqure.com/blog/wp-content/uploads/2021/08/point2.jpg')`,
+              backgroundSize: 'cover',
+              color: 'white',
+              height: '800px',
+            }}
+          >
+
+          
+          </div>
+        </NavLink>
       </Carousel.Item>
       <Carousel.Item>
-        <img
-          className="d-block w-20"
-          src="https://t3.ftcdn.net/jpg/02/45/77/62/360_F_245776292_KjTmy7E9bYhpZxfikW1YLbZrG2EPoRay.jpg"
-          alt="Second slide"
-        />
-        <Carousel.Caption>
-          <h5>Second slide label</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
+        <NavLink to="/productCategories/Hair Health">
+          <div
+            className="d-flex align-items-start justify-content-end"
+            style={{
+              backgroundImage: `url('https://i1.wp.com/kezaliherbals.com/wp-content/uploads/2021/06/Fall-Season-Blog-Banner-6.png?fit=1120%2C630&ssl=1')`,
+              backgroundSize: 'cover',
+              color: 'white',
+              height: '800px',
+            }}
+          >
+          </div>
+        </NavLink>
       </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-20"
-          src="https://t3.ftcdn.net/jpg/02/45/77/62/360_F_245776292_KjTmy7E9bYhpZxfikW1YLbZrG2EPoRay.jpg"
-          alt="Third slide"
-        />
-        <Carousel.Caption>
-          <h5>Third slide label</h5>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
+    
     </Carousel>
   );
 }

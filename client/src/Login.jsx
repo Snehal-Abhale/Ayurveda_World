@@ -1,36 +1,53 @@
-// Login.js
 import React, { useState } from 'react';
 import { Container, Form, Button, Row, Col, Card, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
+import AccountPage from './AccountPage';
+import HomePage from './HomePage';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showError, setShowError] = useState(false);
+  const [user, setUser] = useState(null);
+  // const navigate = useNavigate(); // Use react-router-dom's useNavigate hook
 
   const handleLogin = () => {
-    // Implement your login logic here
-    // For simplicity, let's assume login fails if either username or password is empty
-    if (username && password) {
-      // Successful login logic here
-      console.log('Logging in with:', username, password);
+    // Simulate fake authentication
+    if (username === 'Snehal' && password === 'password@123') {
+      // Set user data in state upon successful login
+      setUser({
+        username: 'Snehal',
+        email: 'snehal@gmail.com',
+        // Add other user data as needed
+      });
+
       setShowError(false);
+
+      // Navigate to the AccountPage component on successful login
+      // navigate('/account');
     } else {
-      // Display error if username or password is empty
+      // Display error if login fails
       setShowError(true);
     }
   };
 
+  // If user is authenticated, render the AccountPage component
+  if (user) {
+    return <HomePage user={user} />;
+  }
+
   return (
-    <Container className="mt-5" style={{ backgroundImage: 'url("/path/to/your/background-image.jpg")', backgroundSize: 'cover', minHeight: '100vh' }}>
+    <Container className="mt-5">
       <Row className="justify-content-center">
-        <Col md={4}> {/* Increase the width of the Card */}
+        <Col md={4}>
           <Card style={{ width: '500px' }}>
-            <Card.Body style={{ padding: '0px' }}> {/* Increase the padding inside the Card */}
+            <Card.Body style={{ padding: '0px' }}>
               <h2 className="text-center mb-4">Login</h2>
 
               {showError && (
                 <Alert variant="danger" className="mb-4">
-                  Please enter both username and password.
+                  Invalid username or password.
                 </Alert>
               )}
 
@@ -42,7 +59,7 @@ const Login = () => {
                     placeholder="Enter username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    style={{ fontSize: '18px', padding: '10px' }} 
+                    style={{ fontSize: '18px', padding: '10px' }}
                   />
                 </Form.Group>
 
@@ -53,7 +70,7 @@ const Login = () => {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    style={{ fontSize: '18px', padding: '10px' }} 
+                    style={{ fontSize: '18px', padding: '10px' }}
                   />
                 </Form.Group>
 

@@ -46,6 +46,7 @@
 // }
 
 import React from "react";
+import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -53,11 +54,14 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-boots
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function CustomNavbar() {
+
+  const [search, setSearch] = useState("")
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Navbar.Brand as={NavLink} to="/">
         <img
-          src="https://www.pngitem.com/pimgs/m/333-3335333_get-ayurveda-ayurvedic-cover-hd-png-download.png"
+          src="https://www.thestatesman.com/wp-content/uploads/2021/10/iStock-641790052.jpg"
           alt="Logo"
           style={{ width: '100px', height: '50px' }}
         />
@@ -66,6 +70,7 @@ export default function CustomNavbar() {
       <Navbar.Collapse id="navbarNavDropdown">
         <Nav className="mx-auto"> {/* Center-align the dropdown menus */}
           <NavDropdown title="Product Categories" id="basic-nav-dropdown">
+          {/* <NavDropdown.Item as={Link} to={`/productCategories/All?search=${search}`}>All</NavDropdown.Item> */}
             <NavDropdown.Item as={Link} to="/productCategories/Immunity">Immunity</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/productCategories/Mens Health">Men's Health</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/productCategories/Womens Health">Women's Health</NavDropdown.Item>
@@ -81,16 +86,20 @@ export default function CustomNavbar() {
             <NavDropdown.Item as={Link} to="/productCategories/Books">Books</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/productCategories/CDs and DVDs">CDs and DVDs</NavDropdown.Item>
           </NavDropdown>
+          <NavDropdown title="Add Products" id="basic-nav-dropdown">
+            <NavDropdown.Item as={Link} to="/add_products">Add Products</NavDropdown.Item>
+            
+          </NavDropdown>
         </Nav>
         <Nav className="ml-auto">
           <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <FormControl type="text" placeholder="Search" value={search} onChange={(event) => setSearch(event.target.value)} className="mr-sm-2" />
             
           </Form>
           <Nav.Link href="/loginform">
             <FontAwesomeIcon icon={faUser} /> {/* User icon */}
           </Nav.Link>
-          <Nav.Link href="#cart-icon">
+          <Nav.Link href="/cart">
             <FontAwesomeIcon icon={faShoppingCart} /> {/* Cart icon */}
           </Nav.Link>
         </Nav>

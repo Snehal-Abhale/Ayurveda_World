@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 import Nav from "../nav";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DarkVariantExample from "../DarkVariantExample";
-import { Container } from 'react-bootstrap';
+import { Container , Row, Col} from 'react-bootstrap';
 
 export default function Root() {
   return (
@@ -19,6 +19,39 @@ export default function Root() {
 
       {/* This <footer> will render below every route. */}
       <footer className="py-4 text-center bg-dark text-white">
+      <div className="container">
+        <Row>
+          <Col md={4}>
+            <div>
+              <img src="https://img.forestessentialsindia.com/pub/media/cms_images/100-Ayurvedic.png" alt="Image 1" style={{ width: '30%', marginBottom: '10px' }} />
+              <h4>100% Ayurvedic</h4>
+              <p>
+                Our products are certified 100% natural and inspired by Ayurveda recipes by the ministry of AYUSH. We conform to the highest quality control standards.
+              </p>
+            </div>
+          </Col>
+          <Col md={4}>
+            <div>
+              <img src="https://img.forestessentialsindia.com/pub/media/cms_images/Plant-Based.png" alt="Image 2" style={{ width: '30%', marginBottom: '10px' }} />
+              <h4>Plant Based</h4>
+              <p>
+                We harness the power of plant extracts as a part of our commitment to using naturally effective and sustainably sourced ingredients to achieve superior results organically.
+              </p>
+            </div>
+          </Col>
+          <Col md={4}>
+            <div>
+              <img src="https://img.forestessentialsindia.com/pub/media/cms_images/free-shipping.png" alt="Image 3" style={{ width: '30%', marginBottom: '10px' }} />
+              <h4>Free Shipping</h4>
+              <p>
+                Free Shipping on all international orders above $ 1000 & on all domestic orders above $50. Cash on Delivery payment option available on all domestic orders above $1000
+              </p>
+            </div>
+          </Col>
+        </Row>
+        <hr /> 
+      </div>
+      
         <Container className="padding-top: 60px">
 
           <div className="row">
@@ -31,15 +64,27 @@ export default function Root() {
             <div className="col-md-4">
               <h5>Visit Us:</h5>
               <p>Ayurvedic World Headquarters</p>
-              <p>123 Holistic Street</p>
-              <p>Wellness City, AY 56789</p>
+              <p>123 Broadway</p>
+              <p>New York City, NY 56789</p>
             </div>
 
             <div className="col-md-4">
               <h5>Follow Us:</h5>
-              <p>Facebook</p>
-              <p>Instagram</p>
-              <p>Twitter</p>
+              <p>
+                <a href="https://www.facebook.com/snehal.abhale.1/" target="_blank" rel="noopener noreferrer">
+                  Facebook
+                </a>
+              </p>
+              <p>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                  Instagram
+                </a>
+              </p>
+              <p>
+                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                  Twitter
+                </a>
+              </p>
             </div>
           </div>
 
