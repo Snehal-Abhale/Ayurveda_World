@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 
 function DarkVariantExample() {
   return (
-    <Carousel data-bs-theme="dark" interval="2000">
+    <Carousel data-bs-theme="dark" interval="1000">
       <Carousel.Item>
         <NavLink to="/productCategories/Immunity">
           <div

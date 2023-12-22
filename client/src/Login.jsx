@@ -14,7 +14,7 @@ const Login = () => {
 
   const handleLogin = () => {
     // Simulate fake authentication
-    if (username === 'Snehal' && password === 'password@123') {
+    if (username === 'Snehal' && password === '123') {
       // Set user data in state upon successful login
       setUser({
         username: 'Snehal',
